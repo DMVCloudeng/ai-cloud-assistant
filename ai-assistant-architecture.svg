@@ -1,0 +1,61 @@
+<svg viewBox="0 0 900 780" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="900" height="780" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#0B2545">AI Cloud Assistant Architecture</text>
+  <text x="450" y="62" text-anchor="middle" font-size="12" fill="#666666">Region: us-east-2 (Ohio) &#8226; Cost: $0</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#0B2545"/>
+    </marker>
+  </defs>
+
+  <!-- Client -->
+  <rect x="330" y="90" width="240" height="50" rx="6" fill="#F4F4F4" stroke="#0B2545" stroke-width="1.5"/>
+  <text x="450" y="120" text-anchor="middle" font-size="13" font-weight="bold" fill="#0B2545">Client (curl / browser)</text>
+
+  <line x1="450" y1="140" x2="450" y2="172" stroke="#0B2545" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Lambda Function URL -->
+  <rect x="290" y="176" width="320" height="55" rx="6" fill="#FF9900"/>
+  <text x="450" y="200" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">Lambda Function URL</text>
+  <text x="450" y="218" text-anchor="middle" font-size="10" fill="#FFFFFF">Public HTTPS endpoint, no API Gateway</text>
+
+  <line x1="450" y1="231" x2="450" y2="263" stroke="#0B2545" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Lambda function -->
+  <rect x="270" y="267" width="360" height="70" rx="6" fill="#0B2545"/>
+  <text x="450" y="292" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">AWS Lambda: ai-cloud-assistant</text>
+  <text x="450" y="308" text-anchor="middle" font-size="10" fill="#FFFFFF">Python 3.14 &#8226; GEMINI_API_KEY stored as env variable</text>
+  <text x="450" y="324" text-anchor="middle" font-size="10" fill="#FFFFFF">IAM role: DynamoDB write access</text>
+
+  <line x1="450" y1="337" x2="450" y2="369" stroke="#0B2545" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Gemini API -->
+  <rect x="270" y="373" width="360" height="55" rx="6" fill="#F4F4F4" stroke="#1E7B34" stroke-width="2"/>
+  <text x="450" y="397" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E7B34">Google Gemini API</text>
+  <text x="450" y="415" text-anchor="middle" font-size="10" fill="#333333">gemini-3.5-flash-lite &#8226; free tier, no card required</text>
+
+  <line x1="450" y1="428" x2="450" y2="460" stroke="#0B2545" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- DynamoDB -->
+  <rect x="270" y="464" width="360" height="70" rx="6" fill="#F4F4F4" stroke="#0B2545" stroke-width="1.5"/>
+  <text x="450" y="489" text-anchor="middle" font-size="13" font-weight="bold" fill="#0B2545">DynamoDB: ai-assistant-log</text>
+  <text x="450" y="505" text-anchor="middle" font-size="10" fill="#333333">Partition key: request_id</text>
+  <text x="450" y="521" text-anchor="middle" font-size="10" fill="#333333">Stores: question, answer, request_id, timestamp</text>
+
+  <line x1="450" y1="534" x2="450" y2="566" stroke="#0B2545" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Response -->
+  <rect x="300" y="570" width="300" height="50" rx="6" fill="#F4F4F4" stroke="#0B2545" stroke-width="1.5"/>
+  <text x="450" y="600" text-anchor="middle" font-size="13" font-weight="bold" fill="#0B2545">JSON response returned to client</text>
+
+  <!-- Legend / notes box -->
+  <rect x="76" y="650" width="748" height="110" rx="8" fill="#F4F4F4" stroke="#FF9900" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="96" y="675" font-size="12" font-weight="bold" fill="#FF9900">Why this architecture is genuinely $0</text>
+  <text x="96" y="697" font-size="10" fill="#333333">Lambda + Lambda Function URLs + DynamoDB are all part of AWS's permanent Always-Free tier.</text>
+  <text x="96" y="714" font-size="10" fill="#333333">Google Gemini's free tier requires no credit card and never expires.</text>
+  <text x="96" y="731" font-size="10" fill="#333333">API Gateway was intentionally avoided in favor of a Lambda Function URL to remove its per-call cost.</text>
+
+</svg>
